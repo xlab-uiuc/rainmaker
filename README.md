@@ -67,7 +67,7 @@ Password: We will share the password with you via HotCRP.
 
 Cloud-backed applications require different versions of .NET, so we reproduce the bugs separately according to the applications. For bug reproduction, we only run the **selected** tests to reproduce bugs we found instead of running the whole test suite. The running time here is measured in the VM provided for the artifact. Note that we had a much more powerful machine used during our evaluation, and the actual running time written in the paper is for the **whole** test suites.
 
-If needed, please refer to [this markdown file](https://github.com/xlab-uiuc/rainmaker/blob/nsdi-ae/bugs.md) or [Google Spreadsheet](https://docs.google.com/spreadsheets/d/13i2NlHpmLgjFmo6NeLLX-XQcXEKuh4xGzjm5nd7ZzJ4/edit?usp=sharing) for detailed bug reports and how they are classified.
+If needed, please refer to [this markdown file](https://github.com/xlab-uiuc/rainmaker-ae/blob/master/bugs.md) or [Google Spreadsheet](https://docs.google.com/spreadsheets/d/13i2NlHpmLgjFmo6NeLLX-XQcXEKuh4xGzjm5nd7ZzJ4/edit?usp=sharing) for detailed bug reports and how they are classified.
 
 #### Applications backed by Azure Storage service
 
@@ -301,5 +301,4 @@ Sleet.AmazonS3.Tests.AmazonS3FileSystemTests.GivenAS3AccountVerifyBucketOperatio
 
 1) It is because multiple test cases have excercised the same SDK APIs, and we inject faults to the same place in different test rounds. So there are multiple alarm records indicating the same bug. For instance, the Orleans bug reproduction before has 30 records denoting 18 bugs.
 2) Some tests were running nondeterministicly in different environmental settings. They could be flaky tests.
-3) The real cloud service, e.g., AWS S3 service, has been changed/improved. For example, the first bug of Sleet may not be reproducible, and the reason is that the implementation of API `EnsureBucketExistsAsync` behind has been changed on the AWS server side. 
 </details>
