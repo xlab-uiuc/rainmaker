@@ -1,0 +1,21 @@
+[
+    {
+        "project": "IronPigeon",
+        "project_test_path": "IronPigeon\\bin\\IronPigeon.Tests",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "timeout_blind",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\IronPigeon\\bin\\IronPigeon.Tests\\Debug\\net5.0\\IronPigeon.Tests.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": ["Providers.AzureBlobStorageSubdirectoryTests.PurgeBlobsExpiringBeforeAsync"],
+        "other_usually_used_tests(for doc purpose)": [],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": []
+    }
+]

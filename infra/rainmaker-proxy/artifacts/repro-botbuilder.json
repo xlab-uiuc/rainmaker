@@ -1,0 +1,43 @@
+[
+    {
+        "project": "Botbuilder-dotnet",
+        "project_test_path": "botbuilder-dotnet\\tests\\Microsoft.Bot.Builder.Azure.Tests",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "timeout_blind",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\botbuilder-dotnet\\tests\\Microsoft.Bot.Builder.Azure.Tests\\bin\\Debug\\netcoreapp3.1\\Microsoft.Bot.Builder.Azure.Tests.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": [
+            "Microsoft.Bot.Builder.Azure.Tests.BlobsTranscriptStoreTests.LogActivities",
+            "Microsoft.Bot.Builder.Azure.Tests.BlobsTranscriptStoreTests.ActivityAddTest"
+        ],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": []
+    },
+    {
+        "project": "Botbuilder-dotnet",
+        "project_test_path": "botbuilder-dotnet\\tests\\Microsoft.Bot.Builder.Azure.Tests",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "request_block",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\botbuilder-dotnet\\tests\\Microsoft.Bot.Builder.Azure.Tests\\bin\\Debug\\netcoreapp3.1\\Microsoft.Bot.Builder.Azure.Tests.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": [
+            "Microsoft.Bot.Builder.Azure.Tests.AzureBlobTranscriptStoreTests.LogActivities"
+        ],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": []
+    }
+]

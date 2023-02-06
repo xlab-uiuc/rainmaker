@@ -1,0 +1,21 @@
+[
+    {
+        "project": "DistributedLock",
+        "project_test_path": "DistributedLock\\DistributedLock.Tests",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "timeout_blind",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\DistributedLock\\DistributedLock.Tests\\bin\\Debug\\netcoreapp3.1\\DistributedLock.Tests.dll",
+        "test": true,
+        "include_PUT_test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": ["TestCanUseLeaseIdForBlobOperations", "TestParallelism"],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": [""]
+    }
+]

@@ -1,0 +1,55 @@
+From c61a451725c1cab5a2aa213a5c6a52d4ad652512 Mon Sep 17 00:00:00 2001
+From: unknown <yinfang3@illinois.edu>
+Date: Thu, 7 Jul 2022 10:58:52 -0500
+Subject: [PATCH] remove emulator check
+
+---
+ .../StorageEmulatorHelper.cs                  | 32 +++++++++----------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/tests/Microsoft.Bot.Builder.Azure.Tests/StorageEmulatorHelper.cs b/tests/Microsoft.Bot.Builder.Azure.Tests/StorageEmulatorHelper.cs
+index b9cfd8191..c0ebf2838 100644
+--- a/tests/Microsoft.Bot.Builder.Azure.Tests/StorageEmulatorHelper.cs
++++ b/tests/Microsoft.Bot.Builder.Azure.Tests/StorageEmulatorHelper.cs
+@@ -42,22 +42,22 @@ public enum StorageEmulatorCommand
+ 
+         public static bool CheckEmulator()
+         {
+-            if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AGENT_NAME")))
+-            {
+-                return false;
+-            }
+-
+-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+-            {
+-                var (code, output) = StorageEmulatorHelper.Status();
+-                if (output.IndexOf("IsRunning: True") > 0)
+-                {
+-                    return true;
+-                }
+-
+-                (code, output) = StorageEmulatorHelper.StartStorageEmulator();
+-                return output.IndexOf("started") > 0;
+-            }
++            // if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AGENT_NAME")))
++            // {
++            //     return false;
++            // }
++
++            // if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
++            // {
++            //     var (code, output) = StorageEmulatorHelper.Status();
++            //     if (output.IndexOf("IsRunning: True") > 0)
++            //     {
++            //         return true;
++            //     }
++
++            //     (code, output) = StorageEmulatorHelper.StartStorageEmulator();
++            //     return output.IndexOf("started") > 0;
++            // }
+ 
+             return true;
+         }
+-- 
+2.34.1.windows.1
+

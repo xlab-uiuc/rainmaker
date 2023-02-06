@@ -1,0 +1,78 @@
+[
+    {
+        "project": "Orleans",
+        "project_test_path": "orleans\\test\\Extensions\\TesterAzureUtils",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": true,
+        "policy": "timeout_blind",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\orleans\\test\\Extensions\\TesterAzureUtils\\bin\\Debug\\net5.0\\Tester.AzureUtils.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": [
+            "Tester.AzureUtils.AzureQueueDataManagerTests.AQ_Standalone_1"
+        ],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": [
+            ""
+        ]
+    },
+    {
+        "project": "Orleans",
+        "project_test_path": "orleans\\test\\Extensions\\TesterAzureUtils",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "timeout_blind",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\orleans\\test\\Extensions\\TesterAzureUtils\\bin\\Debug\\net5.0\\Tester.AzureUtils.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": [
+            "Tester.AzureUtils.AzureQueueDataManagerTests.AQ_Standalone_1",
+            "Tester.AzureUtils.Lease.AzureBlobLeaseProviderTests.ProviderCanReleaseLeases",
+            "Tester.AzureUtils.AzureMembershipTableTests.MembershipTable_Azure_Init",
+            "UnitTests.RemindersTest.AzureRemindersTableTests.RemindersTable_Azure_RemindersParallelUpsert",
+            "Tester.AzureUtils.TimerTests.ReminderTests_AzureTable.Rem_Azure_Basic"
+        ],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": [
+            ""
+        ]
+    },
+    {
+        "project": "Orleans",
+        "project_test_path": "orleans\\test\\Extensions\\TesterAzureUtils",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "request_block",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\orleans\\test\\Extensions\\TesterAzureUtils\\bin\\Debug\\net5.0\\Tester.AzureUtils.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": [
+            "Tester.AzureUtils.Lease.AzureBlobLeaseProviderTests.ProviderCanReleaseLeases",
+            "Tester.AzureUtils.Streaming.AQStreamingTests.AQ_11_ManySame_ManyProducerGrainsManyConsumerClients",
+            "Tester.AzureUtils.Persistence.PersistenceGrainTests_AzureTableGrainStorage.Grain_GuidKeyExtended_AzureTableGrainStorage_Read_Write",
+            "Tester.AzureUtils.Persistence.PersistenceGrainTests_AzureTableGrainStorage.Grain_AzureTableGrainStorage_Delete",
+            "Tester.AzureUtils.Persistence.PersistenceGrainTests_AzureBlobStore_Json.Grain_AzureBlobStore_Delete_Json",
+            "Tester.AzureUtils.Streaming.AQStreamingTests.AQ_06_ManyDifferent_ManyProducerGrainManyConsumerClients",
+            "Tester.AzureUtils.TimerTests.ReminderTests_AzureTable.Rem_Azure_Basic_Restart"
+        ],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": [
+            ""
+        ]
+    }
+]

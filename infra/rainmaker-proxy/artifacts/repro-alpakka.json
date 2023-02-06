@@ -1,0 +1,40 @@
+[
+    {
+        "project": "Alpakka",
+        "project_test_path": "Alpakka\\src\\Azure\\Akka.Streams.Azure.StorageQueue.Tests",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "timeout_blind",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\Alpakka\\src\\Azure\\Akka.Streams.Azure.StorageQueue.Tests\\bin\\Debug\\netcoreapp3.1\\Akka.Streams.Azure.StorageQueue.Tests.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": ["Akka.Streams.Azure.StorageQueue.Tests.QueueSinkSpec.A_QueueSink_should_skip_failing_messages_if_supervision_strategy_is_restart"],
+        "other_usually_used_tests(for doc purpose)": [],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": []
+    },
+    {
+        "project": "Alpakka",
+        "project_test_path": "Alpakka\\src\\Azure\\Akka.Streams.Azure.StorageQueue.Tests",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": true,
+        "policy": "request_block",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\Alpakka\\src\\Azure\\Akka.Streams.Azure.StorageQueue.Tests\\bin\\Debug\\netcoreapp3.1\\Akka.Streams.Azure.StorageQueue.Tests.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": ["Akka.Streams.Azure.StorageQueue.Tests.QueueSinkSpec.A_QueueSink_should_skip_failing_messages_if_supervision_strategy_is_restart"],
+        "other_usually_used_tests(for doc purpose)": [],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": []
+    }
+]

@@ -1,0 +1,37 @@
+diff --git a/test/TestInfrastructure/TestExtensions/TestDefaultConfiguration.cs b/test/TestInfrastructure/TestExtensions/TestDefaultConfiguration.cs
+index 7242157d9..e6a67391b 100644
+--- a/test/TestInfrastructure/TestExtensions/TestDefaultConfiguration.cs
++++ b/test/TestInfrastructure/TestExtensions/TestDefaultConfiguration.cs
+@@ -64,7 +64,8 @@ public static void ConfigureHostConfiguration(IConfigurationBuilder builder)
+         {
+             builder.AddInMemoryCollection(new Dictionary<string, string>
+             {
+-                { nameof(ZooKeeperConnectionString), "127.0.0.1:2181" }
++                { nameof(ZooKeeperConnectionString), "127.0.0.1:2181" },
++                { nameof(DataConnectionString), "UseDevelopmentStorage=true" }
+             });
+ 
+             AddJsonFileInAncestorFolder(builder, "OrleansTestSecrets.json");
+diff --git a/test/TestInfrastructure/TestExtensions/TestUtils.cs b/test/TestInfrastructure/TestExtensions/TestUtils.cs
+index 8cf622cdb..6fdf4a283 100644
+--- a/test/TestInfrastructure/TestExtensions/TestUtils.cs
++++ b/test/TestInfrastructure/TestExtensions/TestUtils.cs
+@@ -38,12 +38,12 @@ public static void CheckForAzureStorage()
+             }
+ 
+             //Starts the storage emulator if not started already and it exists (i.e. is installed).
+-            if (!StorageEmulator.TryStart())
+-            {
+-                string errorMsg = "Azure Storage Emulator could not be started.";
+-                Console.WriteLine(errorMsg);
+-                throw new SkipException(errorMsg);
+-            }
++            // if (!StorageEmulator.TryStart())
++            // {
++            //     string errorMsg = "Azure Storage Emulator could not be started.";
++            //     Console.WriteLine(errorMsg);
++            //     throw new SkipException(errorMsg);
++            // }
+         }
+ 
+         public static void CheckForEventHub()

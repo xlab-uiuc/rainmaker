@@ -1,0 +1,21 @@
+[
+    {
+        "project": "sleet",
+        "project_test_path": "Sleet\\test\\Sleet.AmazonS3.Tests",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "timeout_blind",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\Sleet\\artifacts\\proj\\Sleet.AmazonS3.Tests\\bin\\Debug\\net6.0\\Sleet.AmazonS3.Tests.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": ["Sleet.AmazonS3.Tests.AmazonS3FileSystemTests.GivenAS3AccountVerifyBucketOperations"],
+        "other_usually_used_tests(for doc purpose)": [],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": []
+    }
+]

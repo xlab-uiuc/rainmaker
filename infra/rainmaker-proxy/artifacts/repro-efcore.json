@@ -1,0 +1,24 @@
+[
+    {
+        "project": "efcore",
+        "project_test_path": "efcore\\test\\EFCore.Cosmos.FunctionalTests",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "request_block",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\efcore\\artifacts\\bin\\EFCore.Cosmos.FunctionalTests\\Debug\\net6.0\\Microsoft.EntityFrameworkCore.Cosmos.FunctionalTests.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": [
+            "Microsoft.EntityFrameworkCore.Cosmos.EndToEndCosmosTest.Can_add_update_delete_detached_entity_end_to_end_async",
+            "Microsoft.EntityFrameworkCore.Cosmos.EndToEndCosmosTest.Can_add_update_delete_end_to_end_async"
+        ],
+        "other_usually_used_tests(for doc purpose)": [],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": []
+    }
+]

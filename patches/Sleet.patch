@@ -1,0 +1,80 @@
+From ac0f61b643d53e9a9bc058852634c941e6151fe3 Mon Sep 17 00:00:00 2001
+From: zeyang <592369195@qq.com>
+Date: Sat, 1 Oct 2022 21:01:27 -0500
+Subject: [PATCH] eval
+
+---
+ src/SleetLib/FileSystem/FileSystemFactory.cs        |  2 ++
+ .../Sleet.AmazonS3.Tests/AmazonS3FileSystemTests.cs |  2 +-
+ test/Sleet.AmazonS3.Tests/AmazonS3TestContext.cs    | 13 +++++++++++--
+ 3 files changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/src/SleetLib/FileSystem/FileSystemFactory.cs b/src/SleetLib/FileSystem/FileSystemFactory.cs
+index 12ece3b..8dfb907 100644
+--- a/src/SleetLib/FileSystem/FileSystemFactory.cs
++++ b/src/SleetLib/FileSystem/FileSystemFactory.cs
+@@ -151,6 +151,7 @@ public static async Task<ISleetFileSystem> CreateFileSystemAsync(LocalSettings s
+                         {
+                             config = new AmazonS3Config()
+                             {
++                                Timeout = TimeSpan.FromSeconds(3),
+                                 ServiceURL = serviceURL,
+                                 ProxyCredentials = CredentialCache.DefaultNetworkCredentials
+                             };
+@@ -159,6 +160,7 @@ public static async Task<ISleetFileSystem> CreateFileSystemAsync(LocalSettings s
+                         {
+                             config = new AmazonS3Config()
+                             {
++                                Timeout = TimeSpan.FromSeconds(3),
+                                 RegionEndpoint = RegionEndpoint.GetBySystemName(region),
+                                 ProxyCredentials = CredentialCache.DefaultNetworkCredentials
+                             };
+diff --git a/test/Sleet.AmazonS3.Tests/AmazonS3FileSystemTests.cs b/test/Sleet.AmazonS3.Tests/AmazonS3FileSystemTests.cs
+index 48a9660..883c69d 100644
+--- a/test/Sleet.AmazonS3.Tests/AmazonS3FileSystemTests.cs
++++ b/test/Sleet.AmazonS3.Tests/AmazonS3FileSystemTests.cs
+@@ -11,7 +11,7 @@ namespace Sleet.AmazonS3.Tests
+ {
+     public class AmazonS3FileSystemTests
+     {
+-        [EnvVarExistsFact(AmazonS3TestContext.EnvAccessKeyId)]
++        [EnvVarExistsFactAttribute(AmazonS3TestContext.EnvAccessKeyId)]
+         public async Task GivenAS3AccountVerifyBucketOperations()
+         {
+             using (var testContext = new AmazonS3TestContext())
+diff --git a/test/Sleet.AmazonS3.Tests/AmazonS3TestContext.cs b/test/Sleet.AmazonS3.Tests/AmazonS3TestContext.cs
+index d0bf320..6606810 100644
+--- a/test/Sleet.AmazonS3.Tests/AmazonS3TestContext.cs
++++ b/test/Sleet.AmazonS3.Tests/AmazonS3TestContext.cs
+@@ -24,10 +24,18 @@ public AmazonS3TestContext()
+             LocalCache = new LocalCache();
+             LocalSettings = new LocalSettings();
+ 
+-            var accessKeyId = Environment.GetEnvironmentVariable(EnvAccessKeyId);
++            var accessKeyId = "AKIAT4TY5CHRG7HG35L7"; // Environment.GetEnvironmentVariable(EnvAccessKeyId);
++            // Console.WriteLine("accessKeyId is:" + accessKeyId);
++
+             var secretAccessKey = Environment.GetEnvironmentVariable(EnvSecretAccessKey);
+             var region = Environment.GetEnvironmentVariable(EnvDefaultRegion) ?? "us-east-1";
+-            Client = new AmazonS3Client(accessKeyId, secretAccessKey, RegionEndpoint.GetBySystemName(region));
++            AmazonS3Config config = new AmazonS3Config()
++            {
++                Timeout = TimeSpan.FromSeconds(3),
++                RegionEndpoint = RegionEndpoint.GetBySystemName(region)
++            };
++            // Client = new AmazonS3Client(accessKeyId, secretAccessKey, RegionEndpoint.GetBySystemName(region));
++            Client = new AmazonS3Client(accessKeyId, secretAccessKey, config);
+             Uri = AmazonS3Utility.GetBucketPath(BucketName, region);
+ 
+             FileSystem = new AmazonS3FileSystem(LocalCache, Uri, Client, BucketName);
+@@ -72,6 +80,7 @@ public async Task CleanupAsync()
+ 
+                 await Client.DeleteBucketAsync(BucketName);
+             }
++            // await Task.CompletedTask;
+         }
+ 
+         public void Dispose()
+-- 
+2.35.1.windows.2
+

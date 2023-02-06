@@ -1,0 +1,25 @@
+From 8ce81416abac86595e7704c828aa36164025b392 Mon Sep 17 00:00:00 2001
+From: zeyang <592369195@qq.com>
+Date: Thu, 29 Sep 2022 17:44:53 -0500
+Subject: [PATCH] patch for efcore
+
+---
+ .../TestUtilities/CosmosDbContextOptionsBuilderExtensions.cs    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/test/EFCore.Cosmos.FunctionalTests/TestUtilities/CosmosDbContextOptionsBuilderExtensions.cs b/test/EFCore.Cosmos.FunctionalTests/TestUtilities/CosmosDbContextOptionsBuilderExtensions.cs
+index cf235a47f0..0fcb292089 100644
+--- a/test/EFCore.Cosmos.FunctionalTests/TestUtilities/CosmosDbContextOptionsBuilderExtensions.cs
++++ b/test/EFCore.Cosmos.FunctionalTests/TestUtilities/CosmosDbContextOptionsBuilderExtensions.cs
+@@ -14,7 +14,7 @@ public static CosmosDbContextOptionsBuilder ApplyConfiguration(this CosmosDbCont
+         {
+             optionsBuilder
+                 .ExecutionStrategy(d => new TestCosmosExecutionStrategy(d))
+-                .RequestTimeout(TimeSpan.FromMinutes(20))
++                .RequestTimeout(TimeSpan.FromMinutes(2))
+                 .HttpClientFactory(
+                     () => new HttpClient(
+                         new HttpClientHandler
+-- 
+2.35.1.windows.2
+

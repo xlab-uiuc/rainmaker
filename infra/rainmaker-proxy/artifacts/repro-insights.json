@@ -1,0 +1,30 @@
+[
+    {
+        "project": "Insights",
+        "project_test_path": "Insights\\test\\Logic.Test\\Storage",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "timeout_blind",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\Insights\\artifacts\\Logic.Test\\bin\\net6.0\\NuGet.Insights.Logic.Test.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": [
+            "NuGet.Insights.MutableTableTransactionalBatchTest+TheAddEntityMethod.AddsMultipleEntities",
+            "NuGet.Insights.StorageLeaseServiceTest+TryReleaseAsync.ReleasesLease",
+            "NuGet.Insights.MutableTableTransactionalBatchTest+TheAddEntityMethod.AddsSingleEntity",
+            "NuGet.Insights.MutableTableTransactionalBatchTest+TheDeleteEntityMethod.DeletesSingleEntity",
+            "NuGet.Insights.MutableTableTransactionalBatchTest+TheUpdateMergeEntityMethod.MergesSingleEntity",
+            "NuGet.Insights.TimerExecutionServiceTest+TheExecuteAsyncMethod.CanExecuteNewTimerByDefault",
+            "NuGet.Insights.TimerExecutionServiceTest+TheExecuteNowAsyncMethod.IgnoresFrequency",
+            "NuGet.Insights.TimerExecutionServiceTest+TheExecuteAsyncMethod.ExecutesTimerEnabledForStorage",
+            "NuGet.Insights.TimerExecutionServiceTest+TheExecuteAsyncMethod.RunsATimerAgainIfTheFrequencyAllows"
+        ],
+        "stat_dir": "",
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": []
+    }
+]

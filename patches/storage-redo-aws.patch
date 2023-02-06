@@ -1,0 +1,52 @@
+From 59e684c55ef275861145182718ddc7d8a122de5f Mon Sep 17 00:00:00 2001
+From: zeyang <592369195@qq.com>
+Date: Thu, 15 Sep 2022 12:18:15 -0500
+Subject: [PATCH] redo for aws
+
+---
+ .../Trio/BlobTest.Variations.cs                           | 8 ++++----
+ .../Trio/MessagingTest.Variations.cs                      | 8 ++++----
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/test/Storage.Net.Tests.Integration/Trio/BlobTest.Variations.cs b/test/Storage.Net.Tests.Integration/Trio/BlobTest.Variations.cs
+index 867df39..0cc1df7 100644
+--- a/test/Storage.Net.Tests.Integration/Trio/BlobTest.Variations.cs
++++ b/test/Storage.Net.Tests.Integration/Trio/BlobTest.Variations.cs
+@@ -150,11 +150,11 @@ namespace Storage.Net.Tests.Integration.Blobs
+       protected override IBlobStorage CreateStorage(ITestSettings settings)
+       {
+          return StorageFactory.Blobs.AwsS3(
+-                  settings.AwsAccessKeyId,
+-                  settings.AwsSecretAccessKey,
++                  "AKIAT4TY5CHRG7HG35L7",
++                  "icxKNHI/kHIvdXkBa2efbsUCQWJmGhQq0AC8yuwY",
+                   null,
+-                  settings.AwsTestBucketName,
+-                  settings.AwsTestBucketRegion);
++                  "rainmaker-test",
++                  "us-east-2");
+       }
+    }
+ 
+diff --git a/test/Storage.Net.Tests.Integration/Trio/MessagingTest.Variations.cs b/test/Storage.Net.Tests.Integration/Trio/MessagingTest.Variations.cs
+index b79cf19..f6eca85 100644
+--- a/test/Storage.Net.Tests.Integration/Trio/MessagingTest.Variations.cs
++++ b/test/Storage.Net.Tests.Integration/Trio/MessagingTest.Variations.cs
+@@ -71,10 +71,10 @@ namespace Storage.Net.Tests.Integration.Messaging
+       protected override IMessenger CreateMessenger(ITestSettings settings)
+       {
+          return StorageFactory.Messages.AwsSQS(
+-            settings.AwsAccessKeyId,
+-            settings.AwsSecretAccessKey,
+-            "https://sqs.us-east-1.amazonaws.com",
+-            RegionEndpoint.USEast1);
++            "AKIAT4TY5CHRG7HG35L7",
++            "icxKNHI/kHIvdXkBa2efbsUCQWJmGhQq0AC8yuwY",
++            "https://sqs.us-east-2.amazonaws.com",
++            RegionEndpoint.USEast2);
+       }
+    }
+ 
+-- 
+2.35.1.windows.2
+

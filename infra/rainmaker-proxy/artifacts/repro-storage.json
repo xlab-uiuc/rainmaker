@@ -1,0 +1,54 @@
+[
+    {
+        "project": "storage",
+        "project_test_path": "storage\\test\\Storage.Net.Tests.Integration\\Trio",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "timeout_blind",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\storage\\test\\Storage.Net.Tests.Integration\\bin\\Debug\\netcoreapp2.1\\Storage.Net.Tests.Integration.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": [
+            "Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.Open_copy_to_memory_stream_succeeds",
+            "Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.Delete_create_and_delete_doesnt_exist",
+            "Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.UserMetadata_List_AlsoReturnsMetadata",
+            "Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.GetBlob_Root_valid_returns_some",
+            "Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.GetBlob_for_one_file_succeeds",
+            "Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.List_All_DoesntCrash",
+            "Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.Exists_existing_blob_returns_true"
+        ],
+        "other_usually_used_tests(for doc purpose)": [],
+        "stat_dir": "",
+        "stat_dir_azure": "",
+        "include_PUT_test": false,
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": []
+    },
+    {
+        "project": "storage",
+        "project_test_path": "storage\\test\\Storage.Net.Tests.Integration\\Trio",
+        "project_path_root": "\\Users\\",
+        "rainmaker_path": "rainmaker\\infra\\rainmaker-proxy",
+        "torch_path": "rainmaker\\infra\\torch-tool",
+        "skip": false,
+        "policy": "request_block",
+        "test_dll": "%HOMEDRIVE%%HOMEPATH%\\storage\\test\\Storage.Net.Tests.Integration\\bin\\Debug\\netcoreapp2.1\\Storage.Net.Tests.Integration.dll",
+        "test": true,
+        "full_test_or_vanilla": false,
+        "partial_test": [
+            "Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.Exists_existing_blob_returns_true"
+        ],
+        "other_usually_used_tests(for doc purpose)": [],
+        "stat_dir": "",
+        "stat_dir_azure": "",
+        "include_PUT_test": false,
+        "validation": false,
+        "full_validation": false,
+        "validation_round": 1,
+        "partial_validation": []
+    }
+]

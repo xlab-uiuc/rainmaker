@@ -1,0 +1,74 @@
+{
+  "callbackAssemblyFramework": {
+    "name": "Microsoft.Torch.Dynamic.Callbacks",
+    "publicKey": "42ed2fbf3daab5bf",
+    "version": "1.0.0.0"
+  },
+  "callbackAssemblyStandard": {
+    "name": "Microsoft.Torch.Dynamic.CallbacksCore",
+    "publicKey": "42ed2fbf3daab5bf",
+    "version": "1.0.0.0"
+  },
+  "assemblyDependencies": [
+    { "assembly": "Ben.Demystifier" }
+  ],
+  "excludeInstrumentation": [
+    { "target": "*.get_*" },
+    { "target": "*.set_*" },
+    { "target": "*.ctor(*" },
+    { "target": "*.cctor(*" },
+    { "target": "Microsoft.Azure.Storage.Common;*" },
+    { "target": "System.Net.Sockets*" },
+    { "target": "System.IO.*" },
+    { "target": "Microsoft.Azure.Cosmos.StoreRequestNameValueCollection*" },
+    { "target": "Microsoft.Azure.Cosmos.Json*" },
+    { "target": "Microsoft.Azure.Cosmos.EncodingExtensions*" },
+    { "target": "Microsoft.Azure.Cosmos.Rntbd*" },
+    { "target": "Microsoft.Azure.Cosmos.ClientContextCore.ThrowIfDisposed*" },
+    { "target": "Microsoft.Azure.Cosmos.Core.Utf8*" },
+    { "target": "*.Trace.*" },
+    { "target": "Microsoft.Azure.Cosmos.Core.Utf8*" }
+  ],
+  "faultRules": [
+    {
+      "target": "AUT.Test*",
+      "when": "Always",
+      "fault": "ConsoleLogging(Instrumentation is working!)"
+    },
+    {
+      "target": "AUT.Foo.Bar*",
+      "when": "Never",
+      "fault": "ThrowSqlException(Random)"
+    },
+    {
+      "target": "*;System.Data.SqlClient.SqlCommand*.set_CommandText*",
+      "when": "Never",
+      "fault": "SlowDownSqlQuery(10,*,true)"
+    },
+    {
+      "target": "System.Data.SqlClient.SqlCommand.ExecuteReader*",
+      "when": "Never",
+      "fault": "SlowDownSqlQueryClient(10,*,true)"
+    },
+    {
+      "target": "*;System.Net.Http.HttpClient*.Send*",
+      "when": "Never",
+      "fault": "HttpClientFault()"
+    },
+    {
+      "target": "*;System.Net.HttpWebResponse.get_StatusCode*",
+      "when": "Never",
+      "fault": "HttpClientFault()"
+    },
+    {
+      "target": "*;System.Net.HttpWebRequest.BeginSubmitRequest*#*;System.Net.Http.HttpClient*.Send*#*;System.Net.Http.HttpMessageInvoker.Send*#*;System.Net.Http.SocketsHttpHandler.Send*",
+      "when": "Always",
+      "fault": "InjectHttpWebRequestHeader"
+    },
+    {
+      "target": "*;Azure.Storage*#*;Azure.Data.Tables*#*;Microsoft.WindowsAzure.Storage*#*;Microsoft.Azure.Storage*#*;Microsoft.Azure.Cosmos*#*;Amazon.S3*#*;Amazon.SQS*",
+      "when": "Always",
+      "fault": "InjectContext"
+    }
+  ]
+}

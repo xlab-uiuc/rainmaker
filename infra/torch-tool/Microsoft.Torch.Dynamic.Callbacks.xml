@@ -1,0 +1,457 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Torch.Dynamic.Callbacks</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Torch.Dynamic.Callbacks">
+            <summary>
+            Implements the callbacks called by instrumented methods
+            Important: Do not change callback signatures; they are hard coded in instrumented code.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.Callbacks.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <summary>
+            Callback called in the beginning of an instrumented method.
+            </summary>
+            <param name="thisObj">Object of the caller method.</param>
+            <param name="methodSignature">Name of the method.</param>
+            <param name="methodParams">An array with all parameters.</param>
+            <param name="exception">An exception to throw. If the value is not null, the method will throw an exception and return, without executing the original code or OnEnd callback.</param>
+            <param name="retValue">Return value in case the original method is skipped.</param>
+            <param name="context">An object that is passed to OnEnd.</param>
+            <returns>True, if the method should return without executing the original method body; false otherwise.
+            If True, the instrumented method throws an exception (if exception is not null)
+            or returns the "context" as returnValue of the method (if exception is null).
+            If False, execution of the original method continues, and the "context" is provided to the OnEnd() callback.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.Callbacks.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <summary>
+            Callback called at the end of an instrumented method.
+            </summary>
+            <param name="thisObj">instance object.</param>
+            <param name="methodSignature">Method name.</param>
+            <param name="methodParams">An array with all parameters.</param>
+            <param name="retValue">Return value of the uninstrumented method. Null if the method does not return anything.</param>
+            <param name="contextFromOnStart">Context object returned by the OnStart() callback.</param>
+            <returns>An object that is finally returned by the instrumented method.</returns>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.Always">
+            <summary>
+            A condition that always triggers.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.Always.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.Always.Triggered">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.ConditionFactory">
+            <summary>
+            Condition factory.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ConditionFactory.CreateCondition(System.String)">
+            <summary>
+            Creates a condition from a conditionString.
+            </summary>
+            <param name="conditionString">condition string.</param>
+            <returns>A condition.</returns>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.ICondition">
+            <summary>
+            ICondition interface.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ICondition.Init(System.String)">
+            <summary>
+            Initialize a conditon.
+            </summary>
+            <param name="parameter">Condition parameter.</param>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ICondition.Triggered">
+            <summary>
+            Determines if the condition is triggerred.
+            </summary>
+            <returns>True if the condition is triggered; false otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.EveryKthTime">
+            <summary>
+            A condition that is triggered ever k'th time.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.EveryKthTime.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.EveryKthTime.Triggered">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.Never">
+            <summary>
+            A condition that is never triggered.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.Never.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.Never.Triggered">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.OnKthTime">
+            <summary>
+            A condition that is triggered on kth time.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.OnKthTime.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.OnKthTime.Triggered">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.ConsoleLogging">
+            <summary>
+            Prints a given message to console at the beginning of each instrumented method. Used for debugging purpose only.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ConsoleLogging.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ConsoleLogging.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ConsoleLogging.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.FaultCallbackContext">
+            <summary>
+            Context passed between OnStart() and OnEnd().
+            </summary>
+        </member>
+        <member name="P:Microsoft.Torch.Dynamic.FaultInjection.FaultCallbackContext.FaultRule">
+            <summary>
+            Gets or sets fault rule applied.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Torch.Dynamic.FaultInjection.FaultCallbackContext.State">
+            <summary>
+            Gets or sets additional information passed from OnStart() to OnEnd();
+            </summary>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.FaultFactory">
+            <summary>
+            A fault factory.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Torch.Dynamic.FaultInjection.FaultFactory.FaultParamSep">
+            <summary>
+            Seperator of the parameters in the Init() parameter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.FaultFactory.CreateFault(System.String)">
+            <summary>
+            Creates a fault.
+            </summary>
+            <param name="faultString">Fault string.</param>
+            <returns>An IFault implementation.</returns>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.FaultRule">
+            <summary>
+            The fault rule class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.FaultRule.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Torch.Dynamic.FaultInjection.FaultRule"/> class.
+            </summary>
+            <param name="targetPattern">The target method.</param>
+            <param name="conditionString">The condition.</param>
+            <param name="faultString">The fault.</param>
+        </member>
+        <member name="P:Microsoft.Torch.Dynamic.FaultInjection.FaultRule.Fault">
+            <summary>
+            Gets the fault object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.FaultRule.Triggered(System.String)">
+            <summary>
+            Determines if the fault rule is triggered.
+            </summary>
+            <param name="methodSignature">Method signature.</param>
+            <returns>True if the rule is triggerred. False otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.FaultRule.IsValid">
+            <summary>
+            Determines if the fault rule is valid.
+            </summary>
+            <returns>True of the rule is valid.</returns>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.FaultRules">
+            <summary>
+            Fault rules.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.FaultRules.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Torch.Dynamic.FaultInjection.FaultRules"/> class.
+            </summary>
+            <param name="jsonConfigFile">json configuration file.</param>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.FaultRules.TriggeredRule(System.String)">
+            <summary>
+            Finds the first triggered rule.
+            </summary>
+            <param name="methodSignature">method signature.</param>
+            <returns>A triggered faultRule.</returns>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.FaultRules.RuleCount">
+            <summary>
+            returns the number of active rules.
+            </summary>
+            <returns>the number of rules.</returns>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.HttpClientFault">
+            <summary>
+            Faults for HttpClient.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.HttpClientFault.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.HttpClientFault.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.HttpClientFault.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.IFault">
+            <summary>
+            IFault interface.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.IFault.Init(System.String)">
+            <summary>
+            Initializes fault type.
+            </summary>
+            <param name="faultParam">a string with comma separated parameters.</param>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.IFault.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <summary>
+            Method invoked in the beginning of an instrumented method.
+            </summary>
+            <param name="thisObj">Instance object.</param>
+            <param name="methodSignature">Method signature.</param>
+            <param name="methodParams">An array of method parameters. Any changes to the parameters will be seen by the instrumented method.</param>
+            <param name="exception">An exception to be thrown.</param>
+            <param name="retValue">A value to be returned.</param>
+            <param name="context">A context to be passed to OnEnd().</param>
+            <returns>True if execution of the original method should be skipped. In that case, an exception is thrown if the exception is not null; otherwise the retValue is returned. Return false if the original method body should be executed.</returns>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.IFault.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <summary>
+            Method invoked at the end of an instrumented method.
+            </summary>
+            <param name="thisObj">Instance object.</param>
+            <param name="methodSignature">Method signature.</param>
+            <param name="methodParams">Method parameters.</param>
+            <param name="retValue">Original return value.</param>
+            <param name="contextFromOnStart">Context object from OnStart().</param>
+            <returns>A value to be returned by the instrumented method.</returns>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.InjectHttpWebRequestHeader">
+            <summary>
+            Injects custom header into HttpWebRequests.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.InjectHttpWebRequestHeader.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.InjectHttpWebRequestHeader.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.InjectHttpWebRequestHeader.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.NoFault">
+            <summary>
+            A fault that does nothing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.NoFault.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.NoFault.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.NoFault.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.SimpleLogging">
+            <summary>
+            Logs executed method signatures to a file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.SimpleLogging.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.SimpleLogging.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.SimpleLogging.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.SlowDownSqlQuery">
+            <summary>
+            Injects delay into a sql query so that it runs slow on the server side.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.SlowDownSqlQuery.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.SlowDownSqlQuery.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.SlowDownSqlQuery.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.SlowDownSqlQueryClient">
+            <summary>
+            Injects delay on the client side before making a sql query.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.SlowDownSqlQueryClient.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.SlowDownSqlQueryClient.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.SlowDownSqlQueryClient.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.ThrowCosmosException">
+            <summary>
+            Create a CosmosDB exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ThrowCosmosException.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ThrowCosmosException.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ThrowCosmosException.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.ThrowSqlException">
+            <summary>
+            A fault that throws a SQL exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ThrowSqlException.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ThrowSqlException.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ThrowSqlException.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.Utils">
+            <summary>
+            Utility class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.Utils.WildCardToRegex(System.String)">
+            <summary>
+            COnverts a wildcard to regex.
+            </summary>
+            <param name="wildcardText">wild card text.</param>
+            <returns>a regex object.</returns>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.WithProbability">
+            <summary>
+            A condition that is trigerred with a given probability.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.WithProbability.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.WithProbability.Triggered">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.InjectContext">
+            <summary>
+            Injects context into call context.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.InjectContext.Init(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.InjectContext.OnBegin(System.Object,System.String,System.Object[],System.Exception@,System.Object@,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.InjectContext.OnEnd(System.Object,System.String,System.Object[],System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.Torch.Dynamic.FaultInjection.ImmutableStack`1">
+            <summary>
+            Immutable stack.
+            </summary>
+            <typeparam name="T">Element type.</typeparam>
+        </member>
+        <member name="P:Microsoft.Torch.Dynamic.FaultInjection.ImmutableStack`1.Empty">
+            <summary>
+            Gets an empty immutavle stack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Torch.Dynamic.FaultInjection.ImmutableStack`1.Value">
+            <summary>
+            Gets top value of the stack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Torch.Dynamic.FaultInjection.ImmutableStack`1.Count">
+            <summary>
+            Gets number of items in the stack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Torch.Dynamic.FaultInjection.ImmutableStack`1.IsEmpty">
+            <summary>
+            Gets a value indicating whether a flag indicating if the stack is empty.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ImmutableStack`1.Push(`0)">
+            <summary>
+            Push an item into the stack.
+            </summary>
+            <param name="value">item to push.</param>
+            <returns>The new stack after inserting the item.</returns>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ImmutableStack`1.Pop">
+            <summary>
+            Pops an item from the stack.
+            </summary>
+            <returns>The popped item.</returns>
+            <exception cref="T:System.Exception">Exception thrown if the stack is empty.</exception>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ImmutableStack`1.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Torch.Dynamic.FaultInjection.ImmutableStack`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:TinyJson.JSONParser">
+            <summary>
+            A JSON parser class.
+            </summary>
+        </member>
+        <member name="M:TinyJson.JSONParser.FromJson``1(System.String)">
+            <summary>
+            Create an object of type T from a json string.
+            </summary>
+            <typeparam name="T">Parsed object type.</typeparam>
+            <param name="json">json string.</param>
+            <returns>An object of type T.</returns>
+        </member>
+    </members>
+</doc>
