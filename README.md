@@ -1,5 +1,5 @@
 # Push-Button Reliability Testing for Cloud-Backed Applications with Rainmaker
-This is the source code repo for "Push-Button Reliability Testing for Cloud-Backed Applications with Rainmaker" (accepted by NSDI'2023). This branch is for NSDI'2023 artifact evaluation only.
+This is the research artifact of "Push-Button Reliability Testing for Cloud-Backed Applications with Rainmaker" presented at NSDI '23.
 
 ### Artifact goals
 The instructions will reproduce the key results in the paper. That is, the following instructions will lead you to (1) reproduce the bugs found by Rainmaker and (2) how to generate test plans.
