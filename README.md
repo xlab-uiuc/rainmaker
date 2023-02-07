@@ -302,3 +302,37 @@ Sleet.AmazonS3.Tests.AmazonS3FileSystemTests.GivenAS3AccountVerifyBucketOperatio
 1) It is because multiple test cases have excercised the same SDK APIs, and we inject faults to the same place in different test rounds. So there are multiple alarm records indicating the same bug. For instance, the Orleans bug reproduction before has 30 records denoting 18 bugs.
 2) Some tests were running nondeterministicly in different environmental settings. They could be flaky tests.
 </details>
+
+Note that here we try to reproduce the bugs found by Rainmaker. To run the fault injection in the full mode (which will take longer time), you can configure the value `full_test_or_vanilla` as `True` in the configuration file.
+
+### Generate test plan
+To generate test plan when vanilla run finishes, use `python .\test_planner.py -d <path_to_the_result_dir>`.
+
+We have provided the previously collected vanilla result files in the VM, so you can run the following commands to generate the test plans for each application accordingly:
+```PowerShell
+python .\test_planner.py -d "Botbuilder-dotnet_2022.05.06.06.00.32"
+python .\test_planner.py -d "DistributedLock_2022.05.13.05.29.54"
+python .\test_planner.py -d "Orleans_2022.02.25.00.09.00"
+python .\test_planner.py -d "Alpakka_2022.09.13.23.43.12"
+python .\test_planner.py -d "ServiceBus.AttachmentPlugin_2022.06.01.15.24.27"
+python .\test_planner.py -d "fhir-server_2022.08.14.03.09.23"
+python .\test_planner.py -d "Insights_2022.06.12.18.16.23"
+python .\test_planner.py -d "IronPigeon_2022.09.13.22.07.03"
+python .\test_planner.py -d "sleet_2022.07.25.11.54.00"
+python .\test_planner.py -d "storage_2022.06.01.13.24.28"
+python .\test_planner.py -d "storage-aws_2022.07.18.13.57.02"
+```
+
+After the command finishes, you will see the test plan outcome (with the estimated running time and the number of test plans) in the PowerShell like this:
+```
+Objective 0 (covering all tests in test suite - randomly pick one call site for each test): 2.9411
+Number of test plans: 155
+Objective 1 (covering unique SDK API call sites): 0.3344
+Number of test plans: 47
+Objective 2 cover test and unique SDK call site in a pair-wise way: 2.9414
+Number of test plans: 155
+Objective 3 cover every combination of (test, unique SDK call sites): 18.8992
+Number of test plans: 951
+Objective 4 cover every combination of (test, SDK call sites): 0.2800
+Number of test plans: 99494
+```
