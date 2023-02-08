@@ -1,6 +1,26 @@
 # Push-Button Reliability Testing for Cloud-Backed Applications with Rainmaker
 This is the research artifact of "Push-Button Reliability Testing for Cloud-Backed Applications with Rainmaker" presented at NSDI '23.
 
+Table of Contents
+=================
+* [Getting Started Instructions](#getting-started-instructions)
+   * [Pre-requisites](#pre-requisites)
+* [Evaluation Instructions](#evaluation-instructions)
+    * [Bug reproduction](#key-results-bug-reproduction-table-5)
+        * [Alpakka](#alpakka-5-min)
+        * [ServiceBus.AttachmentPlugin](#servicebusattachmentplugin-figure-7-5-min)
+        * [BotBuilder](#botbuilder-figure-3-5-8-min)
+        * [DistributedLock](#distributedlock-20-min)
+        * [Insights](#insights-30-min)
+        * [IronPigeon](#ironpigeon-3-min)
+        * [Orleans](#orleans-figure-4-85-min)
+        * [Storage (Azure)](#storage-auzre-storage-120-min)
+        * [EF Core](#ef-core-25-min)
+        * [FHIR Server](#fhir-server-30-min)
+        * [Sleet](#sleet-15-min)
+    * [Test plan generation](#test-plan-generation) 
+   
+
 ### Artifact goals
 The instructions will reproduce the key results in the paper. That is, the following instructions will lead you to (1) reproduce the bugs found by Rainmaker and (2) how to generate test plans.
 
@@ -62,7 +82,7 @@ Password: We will share the password with you via HotCRP.
 </details>
 
 ## Evaluation Instructions
-### Key results - Bug reproduction (Table 5)
+### Key results: Bug reproduction (Table 5)
 ```cd ~\rainmaker\infra\rainmaker-proxy```
 
 Cloud-backed applications require different versions of .NET, so we reproduce the bugs separately according to the applications. For bug reproduction, we only run the **selected** tests to reproduce bugs we found instead of running the whole test suite. The running time here is measured in the VM provided for the artifact. Note that we had a much more powerful machine used during our evaluation, and the actual running time written in the paper is for the **whole** test suites.
@@ -235,13 +255,12 @@ Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.Open_copy_to_me
 Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.Exists_existing_blob_returns_true	0	127.0.0.1:10000PUT/devstoreaccount1/itest/c9f445d0-abea-4856-a005-fa874d479d28	C:\Users\yinfang\storage\src\Azure\Storage.Net.Microsoft.Azure.Storage.Blobs\AzureBlobStorage.cs:147:Azure.Storage.Blobs;Azure.Storage.Blobs.Specialized.BlockBlobClient.UploadAsync(System.IO.Stream,Azure.Storage.Blobs.Models.BlobHttpHeaders,System.Collections.Generic.IDictionary`2[string,string],Azure.Storage.Blobs.Models.BlobRequestConditions,System.Nullable`1[Azure.Storage.Blobs.Models.AccessTier],System.IProgress`1[long],System.Threading.CancellationToken):Storage.Net.Microsoft.Azure.Storage.Blobs.AzureBlobStorage.WriteAsync(?)	request_block	Failed	1m 37.2539017s	System.NotSupportedException
 ```
 
-#### efcore (~25 min)
+#### EF Core (~25 min)
 0. Close the Torch tool by running ```ProfOff.ps1``` in ```~\rainmaker\infra\torch-tool```
 1. Start the CosmosDB emulator first (it has already been started in the VM). When encountering any weird problems, please always try to restart/reset the emulator and retry.
 2. Open the Windows system proxy with port specifying at 18081.
 3. Start Torch tool again via ```ProfOn.ps1``` in ```~\rainmaker\infra\torch-tool```
 
-#### efcore 
 Run ```python driver.py -e efcore```
 
 After the tests finish, there will be a folder ```~\rainmaker\results\efcore-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
@@ -303,9 +322,9 @@ Sleet.AmazonS3.Tests.AmazonS3FileSystemTests.GivenAS3AccountVerifyBucketOperatio
 2) Some tests were running nondeterministicly in different environmental settings. They could be flaky tests.
 </details>
 
-Note that here we try to reproduce the bugs found by Rainmaker. To run the fault injection in the full mode (which will take longer time), you can configure the value `full_test_or_vanilla` as `True` in the configuration file.
+Note that here we try to reproduce the bugs found by Rainmaker with selective tests. To run the fault injection in the full mode (which will take longer time), you can configure the value `full_test_or_vanilla` as `True` in the configuration file.
 
-### Generate test plan
+### Test plan generation
 To generate test plan when vanilla run finishes, use `python .\test_planner.py -d <path_to_the_result_dir>`.
 
 We have provided the previously collected vanilla result files in the VM, so you can run the following commands to generate the test plans for each application accordingly:
