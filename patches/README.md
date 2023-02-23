@@ -1,6 +1,6 @@
 Patches of applications under evaluation.
 
-### Azure Storage Service - Csharp
+### Azure Storage Service/AWS S3
 
 - [Alpakka](https://github.com/akkadotnet/Alpakka) - Version: 3d881af4f4831cb33a319aeda95ed13ceb61da5c
 - [AttachmentPlugin](https://github.com/SeanFeldman/ServiceBus.AttachmentPlugin) - Version: a3739a16ceb0a4a10a23b7f82c3ff868a0ee019d - Branch: develop
