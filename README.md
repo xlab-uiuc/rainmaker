@@ -35,8 +35,8 @@ Environment setup (click to expand; skip this if using the VM provided by us)
 - Rainmaker repository cloned in the home directory: 
     ```
     cd ~
-    git clone https://github.com/xlab-uiuc/open-rainmaker.git
-    cd open-rainmaker
+    git clone https://github.com/xlab-uiuc/rainmaker.git
+    cd rainmaker
     ```  
 
 - .NET: The .NET version is decided by the cloud application under test. To check your .NET SDK: Go to C:\Program Files\dotnet\sdk to view all .NET SDK editions. If you do not have .NET SDK, please go to [Download .NET](https://dotnet.microsoft.com/en-us/download/dotnet) to download and install.
@@ -73,18 +73,18 @@ Environment setup (click to expand; skip this if using the VM provided by us)
 
 ## Evaluation Instructions
 ### Key results: Bug reproduction (Table 5)
-```cd ~\open-rainmaker\infra\rainmaker-proxy```
+```cd ~\rainmaker\infra\rainmaker-proxy```
 
 Cloud-backed applications require different versions of .NET, so we reproduce the bugs separately according to the applications. For bug reproduction, we only run the **selected** tests to reproduce bugs we found instead of running the whole test suite. The running time here is measured in the VM provided for the artifact. Note that we had a much more powerful machine used during our evaluation, and the actual running time written in the paper is for the **whole** test suites.
 
-If needed, please refer to [this markdown file](https://github.com/xlab-uiuc/open-rainmaker/blob/master/bugs.md) or [Google Spreadsheet](https://docs.google.com/spreadsheets/d/13i2NlHpmLgjFmo6NeLLX-XQcXEKuh4xGzjm5nd7ZzJ4/edit?usp=sharing) for detailed bug reports and how they are classified.
+If needed, please refer to [this markdown file](https://github.com/xlab-uiuc/rainmaker/blob/master/bugs.md) or [Google Spreadsheet](https://docs.google.com/spreadsheets/d/13i2NlHpmLgjFmo6NeLLX-XQcXEKuh4xGzjm5nd7ZzJ4/edit?usp=sharing) for detailed bug reports and how they are classified.
 
 #### Applications backed by Azure Storage service
 
 #### Alpakka (~5 min)
 Run ```python driver.py -e alpakka```
 
-After the tests finish, there will be a folder ```~\open-rainmaker\results\Alpakka-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
+After the tests finish, there will be a folder ```~\rainmaker\results\Alpakka-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
 
 The ```bug_inspection.csv``` contains the following two records indicating the two bugs founded, e.g.:
 ```
@@ -96,7 +96,7 @@ Akka.Streams.Azure.StorageQueue.Tests.QueueSinkSpec.A_QueueSink_should_skip_fail
 #### ServiceBus.AttachmentPlugin (Figure 7; ~5 min)
 Run ```python driver.py -e attachmentplugin```
 
-After the tests finish, there will be a folder ```~\open-rainmaker\results\ServiceBus.AttachmentPlugin-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
+After the tests finish, there will be a folder ```~\rainmaker\results\ServiceBus.AttachmentPlugin-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
 
 The ```bug_inspection.csv``` contains the following two records indicating the two bugs founded, e.g.:
 ```
@@ -107,7 +107,7 @@ ServiceBus.AttachmentPlugin.Tests.When_sending_message_using_connection_string.S
 #### BotBuilder (Figure 3, 5; ~8 min)
 Run ```python driver.py -e botbuilder```
 
-After the tests finish, there will be a folder ```~\open-rainmaker\results\Botbuilder-dotnet-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
+After the tests finish, there will be a folder ```~\rainmaker\results\Botbuilder-dotnet-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
 
 The ```bug_inspection.csv``` contains the following four records indicating the four bugs founded, e.g.:
 ```
@@ -120,7 +120,7 @@ Microsoft.Bot.Builder.Azure.Tests.AzureBlobTranscriptStoreTests.LogActivities	0	
 #### DistributedLock (~20 min)
 Run ```python driver.py -e distributedlock```
 
-After the tests finish, there will be a folder ```~\open-rainmaker\results\DistributedLock-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
+After the tests finish, there will be a folder ```~\rainmaker\results\DistributedLock-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
 
 The ```bug_inspection.csv``` contains the following two records (may have more than two due to the test flakiness) indicating the two bugs founded, e.g.:
 ```
@@ -133,7 +133,7 @@ TestParallelism	3	127.0.0.1:10000PUT/devstoreaccount1/distributed-lock-netcoreap
 
 Run ```python driver.py -e insights```
 
-After the tests finish, there will be a folder ```~\open-rainmaker\results\Insights-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
+After the tests finish, there will be a folder ```~\rainmaker\results\Insights-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
 
 The ```bug_inspection.csv``` contains the following 14 records indicating the ten bugs founded (there are multiple test rounds denoting the same bug), e.g.:
 ```
@@ -157,7 +157,7 @@ NuGet.Insights.TimerExecutionServiceTest+TheExecuteAsyncMethod.RunsATimerAgainIf
 #### IronPigeon (~3 min)
 Run ```python driver.py -e ironpigeon```
 
-After the tests finish, there will be a folder ```~\open-rainmaker\results\IronPigeon-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
+After the tests finish, there will be a folder ```~\rainmaker\results\IronPigeon-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
 
 The ```bug_inspection.csv``` contains the following one record indicating the one bug founded, e.g.:
 ```
@@ -167,7 +167,7 @@ Providers.AzureBlobStorageSubdirectoryTests.PurgeBlobsExpiringBeforeAsync	1	127.
 #### Orleans (Figure 4; ~85 min)
 Run ```python driver.py -e orleans```
 
-After the tests finish, there will be two folders ```~\open-rainmaker\results\Orleans-injection-round_XXXX.XX.XX.XX.XX.XX``` created with ```bug_inspection.csv``` files inside.
+After the tests finish, there will be two folders ```~\rainmaker\results\Orleans-injection-round_XXXX.XX.XX.XX.XX.XX``` created with ```bug_inspection.csv``` files inside.
 
 One ```bug_inspection.csv``` contains seven records, and the other one contains 23 alarms using a different policy, e.g.:
 ```
@@ -209,7 +209,7 @@ Tester.AzureUtils.Persistence.PersistenceGrainTests_AzureBlobStore_Json.Grain_Az
 #### Storage (Auzre Storage; ~120 min)
 Run ```python driver.py -e storage```
 
-After the tests finish, there will be two folders```~\open-rainmaker\results\storage-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` files inside.
+After the tests finish, there will be two folders```~\rainmaker\results\storage-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` files inside.
 
 One ```bug_inspection.csv``` contains 28 records indicating the 11 bugs founded, and the other file contains one record indicating another bug found by different injection policy, e.g.:
 ```
@@ -246,14 +246,14 @@ Storage.Net.Tests.Integration.Blobs.AzureEmulatedBlobStorageTest.Exists_existing
 ```
 
 #### EF Core (~25 min)
-0. Close the Torch tool by running ```ProfOff.ps1``` in ```~\open-rainmaker\infra\torch-tool```
+0. Close the Torch tool by running ```ProfOff.ps1``` in ```~\rainmaker\infra\torch-tool```
 1. Start the CosmosDB emulator first (it has already been started in the VM). When encountering any weird problems, please always try to restart/reset the emulator and retry.
 2. Open the Windows system proxy with port specifying at 18081.
-3. Start Torch tool again via ```ProfOn.ps1``` in ```~\open-rainmaker\infra\torch-tool```
+3. Start Torch tool again via ```ProfOn.ps1``` in ```~\rainmaker\infra\torch-tool```
 
 Run ```python driver.py -e efcore```
 
-After the tests finish, there will be a folder ```~\open-rainmaker\results\efcore-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
+After the tests finish, there will be a folder ```~\rainmaker\results\efcore-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
 
 The ```bug_inspection.csv``` contains the following seven records indicating the seven bugs founded, e.g.:
 ```
@@ -266,14 +266,14 @@ Microsoft.EntityFrameworkCore.Cosmos.EndToEndCosmosTest.Can_add_update_delete_en
 Microsoft.EntityFrameworkCore.Cosmos.EndToEndCosmosTest.Can_add_update_delete_end_to_end_async	3	127.0.0.1:8081GET/dbs/CosmosEndToEndTest/colls/CustomerContext	C:\Users\yinfang\efcore\src\EFCore.Cosmos\Storage\Internal\CosmosClientWrapper.cs:280:Microsoft.Azure.Cosmos.Client;Microsoft.Azure.Cosmos.ContainerInlineCore.CreateItemStreamAsync(System.IO.Stream,Microsoft.Azure.Cosmos.PartitionKey,Microsoft.Azure.Cosmos.ItemRequestOptions,System.Threading.CancellationToken):Microsoft.EntityFrameworkCore.Cosmos.Storage.Internal.CosmosClientWrapper.CreateItemOnceAsync(?)	request_block	Failed	49.8019812s	System.InvalidOperationException	
 ```
 #### FHIR Server (~30 min)
-0. Close the Torch tool by running ```ProfOff.ps1``` in ```~\open-rainmaker\infra\torch-tool```
+0. Close the Torch tool by running ```ProfOff.ps1``` in ```~\rainmaker\infra\torch-tool```
 1. Start the CosmosDB emulator first (it has already been started in the VM). When encountering any weird problems, please always try to restart/reset the emulator and retry.
 2. Open the Windows system proxy with port specifying at 18081.
-3. Start Torch tool again via ```ProfOn.ps1``` in ```~\open-rainmaker\infra\torch-tool```
+3. Start Torch tool again via ```ProfOn.ps1``` in ```~\rainmaker\infra\torch-tool```
 
 Run ```python driver.py -e fhirserver```
 
-After the tests finish, there will be a folder ```~\open-rainmaker\results\fhir-server-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
+After the tests finish, there will be a folder ```~\rainmaker\results\fhir-server-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
 
 The ```bug_inspection.csv``` contains the following 11 records indicating the 11 bugs founded, e.g.:
 ```
@@ -297,7 +297,7 @@ GivenExportJobDoesNotExist_WhenRequestingExportStatus_ThenServerShouldReturnNotF
 
 Run ```python driver.py -e sleet```
 
-After the tests finish, there will be a folder ```~\open-rainmaker\results\sleet-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
+After the tests finish, there will be a folder ```~\rainmaker\results\sleet-injection-round_XXXX.XX.XX.XX.XX.XX``` created with a ```bug_inspection.csv``` file inside.
 
 The ```bug_inspection.csv``` contains the following two records indicating the two bugs founded, e.g.:
 ```
