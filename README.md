@@ -21,16 +21,13 @@ Table of Contents
     * [Test plan generation](#test-plan-generation) 
    
 
-### Artifact goals
+### Goal
 The instructions will reproduce the key results in the paper. That is, the following instructions will lead you to (1) reproduce the bugs found by Rainmaker and (2) how to generate test plans.
 
 ## Getting Started Instructions
-**We strongly encourage you to use the VMs provided by us. We have set up the environment and installed all the dependencies on the VM so you can just go ahead to reproduce the results.**
-
-**Note that Microsoft Remote Desktop only supports one user to use the VM machine at a time.**
 
 ### Pre-requisites
-Environment setup (click to expand; skip this if using the VM provided by us)
+Environment setup
 
 - Rainmaker repository cloned in the home directory: 
     ```
@@ -129,7 +126,7 @@ TestParallelism	3	127.0.0.1:10000PUT/devstoreaccount1/distributed-lock-netcoreap
 ```
 
 #### Insights (~30 min)
-(Skip if you use the VM) You may need to specify your .NET version in the ```global.json``` file under Insights directory.
+You may need to specify your .NET version in the ```global.json``` file under Insights directory.
 
 Run ```python driver.py -e insights```
 
@@ -291,8 +288,8 @@ GivenExportJobDoesNotExist_WhenRequestingExportStatus_ThenServerShouldReturnNotF
 ```
 
 #### Sleet (~15 min)
-1. (Skip if you use the VM) Add the environment variables "AWS_ACCESS_KEY_ID" and "AWS_ACCESS_KEY_ID" with your AWS keys, and remember to use a new PowerShell to make the environment variables valid;
-2. (Skip if you use the VM) Add the mockserver certificate to your machine;
+1. Add the environment variables "AWS_ACCESS_KEY_ID" and "AWS_ACCESS_KEY_ID" with your AWS keys, and remember to use a new PowerShell to make the environment variables valid;
+2. Add the mockserver certificate to your machine;
 3. Open the Windows system proxy with port specifying at 18081.
 
 Run ```python driver.py -e sleet```
