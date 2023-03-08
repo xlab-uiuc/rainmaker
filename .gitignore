@@ -33,6 +33,7 @@ infra/rainmaker-proxy/dependency-reduced-pom.xml
 infra/test-planner/*.json
 infra/rainmaker-proxy/org/mockserver/socket/
 
+!requirements.txt
 !run-all-request-missing-header.txt
 !LICENSE.txt
 !fica/config.json
