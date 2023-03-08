@@ -30,7 +30,7 @@ Java version: 11
 
 ### Python
 
-Install Python and following packages in your system:
+Install Python3 and following packages in your system:
 
 ```
 pandas
