@@ -72,6 +72,7 @@ public class Rainmaker {
     public static int cosmosErrorCode;
     public static boolean appFlag;
     public static String cloudService;
+    public static String avoidTestPath;
 
     private static String vanillaDir;
     private static boolean vanillaRun = false;
@@ -153,6 +154,11 @@ public class Rainmaker {
         }
         else
             appFlag = false;
+
+        if (config.has("test_path_to_avoid"))
+            avoidTestPath = config.getString("test_path_to_avoid");
+        else
+            avoidTestPath = "";
 
         if (config.has("cosmos_app")) {
             cosmosAppFlag = config.getBoolean("cosmos_app");
@@ -308,6 +314,8 @@ public class Rainmaker {
                             if (values[0].isEmpty())
                                 continue;
                             if (values[0].equals("[', , ,']"))
+                                continue;
+                            if (!avoidTestPath.equals("") && values[0].contains(avoidTestPath))
                                 continue;
                             String callSiteString = Objects.requireNonNull(Optional.of(values[0].trim())
                                     .filter(str -> str.length() != 0)
