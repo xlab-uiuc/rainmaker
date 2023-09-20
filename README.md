@@ -66,6 +66,8 @@ Environment setup
     4. Since the environment settings of a PowerShell is established at the beginning of its life cycle, you should open another PowerShell with Administrator permission, and then the instrumentation will work
     5. Note that you should start the emulator first and then turn on Torch. If the emulator cannot be started, please run ``.\ProfOff.ps1``  to turn off Torch and then run ``.\ProfOn.ps1``.
 - CosmosDB Emulator installed and run.
+- Download and build the cloud application repos (https://github.com/xlab-uiuc/rainmaker/tree/master/patches) under the path ```C:\Users\XX```;
+    - Enter the application .NET solution folder (i.e., the folder with .sln file. For example, ```cd C:\Users\XX\Alpakka\src```) and build it there (```dotnet build```);
 </details>
 
 ## Evaluation Instructions
