@@ -8,7 +8,7 @@ Rainmaker aims to build a large-scale cloud application bug finding infrastructu
 
 ### .NET
 
-The .NET version should be decided by the cloud application under test. In most cases we recommend is .NET 6.0 since it is backward compatible.
+The .NET version should be decided by the cloud application under test. In most cases we recommend .NET 6.0 since it is backward compatible.
 
 To check .NET SDK: Go to C:\Program Files\dotnet\sdk to view all .NET SDK editions.
 
